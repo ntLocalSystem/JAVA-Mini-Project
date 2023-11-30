@@ -1,0 +1,174 @@
+package sign_up;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.Color;
+import javax.swing.JButton;
+import java.awt.SystemColor;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import javax.swing.JSeparator;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+import java.sql.*;
+
+import main_page.main_p;
+
+public class signup_page {
+
+	private JFrame frmVirInsuranceSignup;
+	private JTextField usernametf;
+	private JTextField emailtf;
+	private JTextField mobilenotf;
+	private JTextField passwordtf;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					signup_page window = new signup_page();
+					window.frmVirInsuranceSignup.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public signup_page() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frmVirInsuranceSignup = new JFrame();
+		frmVirInsuranceSignup.setTitle("Vir Insurance SignUp");
+		frmVirInsuranceSignup.setUndecorated(false);
+		frmVirInsuranceSignup.getContentPane().setForeground(Color.WHITE);
+		frmVirInsuranceSignup.setBounds(100, 100, 845, 635);
+		frmVirInsuranceSignup.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmVirInsuranceSignup.getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 406, 635);
+		panel.setBackground(Color.DARK_GRAY);
+		frmVirInsuranceSignup.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
+		lblNewLabel.setBounds(-48, 43, 485, 628);
+		panel.add(lblNewLabel);
+		lblNewLabel.setIcon(new ImageIcon(signup_page.class.getResource("/images/VIR INSURANCE.jpg")));
+		
+		JButton btnNewButton = new JButton("Sign Up");
+		btnNewButton.setBounds(429, 510, 353, 41);
+		btnNewButton.setBackground(new Color(241,57,83));
+		btnNewButton.addActionListener
+		(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Connection con ;
+				PreparedStatement stmt;
+				try {
+				
+					con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mini_project?verifyServerCertificate=false&useSSL=true","root","");
+					
+					stmt = con.prepareStatement("insert into logininfo values(?,?,?,?)");
+					stmt.setString(1, usernametf.getText());
+					stmt.setString(2,passwordtf.getText());
+					stmt.setInt(3, Integer.parseInt(mobilenotf.getText()));
+					stmt.setString(4, emailtf.getText());
+					stmt.executeUpdate();
+					
+			
+				
+				}
+			
+				catch(Exception except)
+				{
+					System.out.println(except);
+				}
+			
+				
+			}
+		});
+		frmVirInsuranceSignup.getContentPane().add(btnNewButton);
+		
+		usernametf = new JTextField();
+		usernametf.setBounds(429, 71, 343, 32);
+		frmVirInsuranceSignup.getContentPane().add(usernametf);
+		usernametf.setColumns(10);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBackground(Color.DARK_GRAY);
+		separator.setBounds(421, 127, 364, 2);
+		frmVirInsuranceSignup.getContentPane().add(separator);
+		
+		JLabel lblUsername = new JLabel("USERNAME  :");
+		lblUsername.setForeground(new Color(241,57,83));
+		lblUsername.setBounds(428, 38, 90, 32);
+		frmVirInsuranceSignup.getContentPane().add(lblUsername);
+		
+		emailtf = new JTextField();
+		emailtf.setBounds(428, 185, 343, 32);
+		emailtf.setColumns(10);
+		frmVirInsuranceSignup.getContentPane().add(emailtf);
+		
+		JLabel lblEmail = new JLabel("EMAIL  :");
+		lblEmail.setForeground(new Color(241,57,83));
+		lblEmail.setBounds(428, 155, 90, 32);
+		frmVirInsuranceSignup.getContentPane().add(lblEmail);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBackground(Color.DARK_GRAY);
+		separator_1.setBounds(421, 242, 364, 2);
+		frmVirInsuranceSignup.getContentPane().add(separator_1);
+		
+		JLabel lblPhoneNo = new JLabel("PHONE NO  :");
+		lblPhoneNo.setForeground(new Color(241,57,83));
+		lblPhoneNo.setBounds(428, 268, 90, 32);
+		frmVirInsuranceSignup.getContentPane().add(lblPhoneNo);
+		
+		mobilenotf = new JTextField();
+		mobilenotf.setBounds(429, 301, 343, 32);
+		mobilenotf.setColumns(10);
+		frmVirInsuranceSignup.getContentPane().add(mobilenotf);
+		
+		JSeparator separator_2 = new JSeparator();
+		separator_2.setBackground(Color.DARK_GRAY);
+		separator_2.setBounds(421, 358, 364, 2);
+		frmVirInsuranceSignup.getContentPane().add(separator_2);
+		
+		JLabel lblPassword = new JLabel("PASSWORD  :");
+		lblPassword.setForeground(new Color(241,57,83));
+		lblPassword.setBounds(428, 374, 90, 32);
+		frmVirInsuranceSignup.getContentPane().add(lblPassword);
+		
+		passwordtf = new JTextField();
+		passwordtf.setBounds(429, 406, 343, 32);
+		passwordtf.setColumns(10);
+		frmVirInsuranceSignup.getContentPane().add(passwordtf);
+		
+		JSeparator separator_3 = new JSeparator();
+		separator_3.setBackground(Color.DARK_GRAY);
+		separator_3.setBounds(421, 464, 364, 2);
+		frmVirInsuranceSignup.getContentPane().add(separator_3);
+	}
+}

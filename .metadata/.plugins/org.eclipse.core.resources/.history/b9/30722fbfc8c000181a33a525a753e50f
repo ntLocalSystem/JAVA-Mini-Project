@@ -1,0 +1,182 @@
+package Login_P;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JPasswordField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JSeparator;
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.JPanel;
+
+public class Login_Page {
+
+	private JFrame frame;
+	private JFrame frameloginsystem;
+	private JTextField usernametf;
+	private JPasswordField passwordtf;
+	
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Login_Page window = new Login_Page();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Login_Page() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(200, 200, 734, 468);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Login ");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblNewLabel.setBounds(503, 13, 132, 31);
+		frame.getContentPane().add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Username");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel_1.setBounds(389, 81, 84, 16);
+		frame.getContentPane().add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("Password");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel_2.setBounds(389, 139, 84, 16);
+		frame.getContentPane().add(lblNewLabel_2);
+		
+		usernametf = new JTextField();
+		usernametf.setBounds(503, 78, 201, 22);
+		frame.getContentPane().add(usernametf);
+		usernametf.setColumns(10);
+		
+		passwordtf = new JPasswordField();
+		passwordtf.setBounds(503, 136, 201, 22);
+		frame.getContentPane().add(passwordtf);
+		
+		JButton loginbtn = new JButton("Login");
+		loginbtn.setForeground(Color.WHITE);
+		loginbtn.setBackground(new Color(241,57,83));
+		loginbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String password = passwordtf.getText();
+				String username = usernametf.getText();
+				
+				if(password.contains("king") && username.contains("one"))
+				{
+					passwordtf.setText(null);
+					usernametf.setText(null);
+					
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "Invalid Login Details", "Login Error", JOptionPane.ERROR_MESSAGE);
+					passwordtf.setText(null);
+					usernametf.setText(null);
+					
+				}
+				
+			}
+		});
+		loginbtn.setBounds(378, 215, 153, 36);
+		frame.getContentPane().add(loginbtn);
+		
+		JButton resetbtn = new JButton("Reset");
+		resetbtn.setForeground(Color.WHITE);
+		resetbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				usernametf.setText(null);
+				passwordtf.setText(null);
+			}
+		});
+		resetbtn.setBounds(551, 215, 153, 36);
+		resetbtn.setBackground(new Color(241,57,83));
+		frame.getContentPane().add(resetbtn);
+		
+		JButton exitbtn = new JButton("Exit");
+		exitbtn.setForeground(Color.WHITE);
+		exitbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frameloginsystem = new JFrame("Exit");
+				if(JOptionPane.showConfirmDialog(frameloginsystem, "Confirm if you want to exit","Login Systems",
+						JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION) {
+					System.exit(0);
+				}
+				
+			}
+		});
+		exitbtn.setBounds(551, 356, 153, 34);
+		exitbtn.setBackground(new Color(241,57,83));
+		frame.getContentPane().add(exitbtn);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(49, 182, 1, 2);
+		frame.getContentPane().add(separator);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBounds(69, 167, 1, 2);
+		frame.getContentPane().add(separator_1);
+		
+		JSeparator separator_2 = new JSeparator();
+		separator_2.setBounds(366, 182, 338, 2);
+		frame.getContentPane().add(separator_2);
+		
+		JSeparator separator_3 = new JSeparator();
+		separator_3.setBounds(366, 57, 338, 8);
+		frame.getContentPane().add(separator_3);
+		
+		JButton signbtn = new JButton("Sign Up");
+		signbtn.setForeground(Color.WHITE);
+		signbtn.setBackground(new Color(241,57,83));
+		signbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		signbtn.setBounds(378, 356, 153, 36);
+		frame.getContentPane().add(signbtn);
+		
+		JSeparator separator_4 = new JSeparator();
+		separator_4.setBounds(366, 274, 338, 2);
+		frame.getContentPane().add(separator_4);
+		
+		JLabel lblNewLabel_3 = new JLabel("Don't have an account? SignUp!");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNewLabel_3.setBounds(378, 299, 257, 22);
+		frame.getContentPane().add(lblNewLabel_3);
+		
+		JSeparator separator_5 = new JSeparator();
+		separator_5.setBounds(366, 334, 338, 2);
+		frame.getContentPane().add(separator_5);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
+		panel.setBounds(0, 0, 354, 421);
+		frame.getContentPane().add(panel);
+	}
+}

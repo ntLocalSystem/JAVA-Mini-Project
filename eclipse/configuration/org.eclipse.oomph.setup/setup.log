@@ -1,0 +1,90 @@
+[2018-09-24 22:04:20] Executing bootstrap tasks
+[2018-09-24 22:04:20] Java(TM) SE Runtime Environment 1.8.0_181-b13
+[2018-09-24 22:04:20] Product org.eclipse.products.epp.package.java.2018-09
+[2018-09-24 22:04:20] Bundle org.eclipse.oomph.setup 1.10.0.v20180828-0705, build=3652, branch=fddd6edb5a235aea831fecf04547579693a78a4e
+[2018-09-24 22:04:20] Bundle org.eclipse.oomph.setup.core 1.10.0.v20180714-0556, build=3652, branch=fddd6edb5a235aea831fecf04547579693a78a4e
+[2018-09-24 22:04:20] Bundle org.eclipse.oomph.setup.p2 1.10.0.v20180706-1242, build=3652, branch=fddd6edb5a235aea831fecf04547579693a78a4e
+[2018-09-24 22:04:20] Performing P2 Director (Eclipse IDE for Java Developers (2018-09))
+[2018-09-24 22:04:20] Offline = false
+[2018-09-24 22:04:20] Mirrors = true
+[2018-09-24 22:04:20] Resolving 27 requirements from 3 repositories to C:\Users\Rohit Mutalik\Desktop\JAVA mini project\eclipse
+[2018-09-24 22:04:20] Requirement epp.package.java [4.9.0,4.10.0)
+[2018-09-24 22:04:20] Requirement org.eclipse.platform.feature.group [4.9.0,4.10.0)
+[2018-09-24 22:04:20] Requirement org.eclipse.rcp.feature.group [4.9.0,4.10.0)
+[2018-09-24 22:04:20] Requirement org.eclipse.buildship.feature.group
+[2018-09-24 22:04:20] Requirement org.eclipse.eclemma.feature.feature.group
+[2018-09-24 22:04:20] Requirement org.eclipse.egit.feature.group
+[2018-09-24 22:04:20] Requirement org.eclipse.egit.mylyn.feature.group
+[2018-09-24 22:04:20] Requirement org.eclipse.epp.mpc.feature.group
+[2018-09-24 22:04:20] Requirement org.eclipse.jdt.feature.group
+[2018-09-24 22:04:20] Requirement org.eclipse.jgit.feature.group
+[2018-09-24 22:04:20] Requirement org.eclipse.m2e.feature.feature.group
+[2018-09-24 22:04:20] Requirement org.eclipse.m2e.logback.feature.feature.group
+[2018-09-24 22:04:20] Requirement org.eclipse.mylyn.bugzilla_feature.feature.group
+[2018-09-24 22:04:20] Requirement org.eclipse.mylyn.context_feature.feature.group
+[2018-09-24 22:04:20] Requirement org.eclipse.mylyn.git.feature.group
+[2018-09-24 22:04:20] Requirement org.eclipse.mylyn.hudson.feature.group
+[2018-09-24 22:04:20] Requirement org.eclipse.mylyn.ide_feature.feature.group
+[2018-09-24 22:04:20] Requirement org.eclipse.mylyn.java_feature.feature.group
+[2018-09-24 22:04:20] Requirement org.eclipse.mylyn.wikitext_feature.feature.group
+[2018-09-24 22:04:20] Requirement org.eclipse.mylyn_feature.feature.group
+[2018-09-24 22:04:20] Requirement org.eclipse.recommenders.mylyn.rcp.feature.feature.group
+[2018-09-24 22:04:20] Requirement org.eclipse.recommenders.news.rcp.feature.feature.group
+[2018-09-24 22:04:20] Requirement org.eclipse.recommenders.rcp.feature.feature.group
+[2018-09-24 22:04:20] Requirement org.eclipse.recommenders.snipmatch.rcp.feature.feature.group
+[2018-09-24 22:04:20] Requirement org.eclipse.tips.feature.feature.group
+[2018-09-24 22:04:20] Requirement org.eclipse.wst.xml_ui.feature.feature.group
+[2018-09-24 22:04:20] Requirement org.eclipse.oomph.setup.feature.group
+[2018-09-24 22:04:20] Repository http://download.eclipse.org/technology/epp/packages/2018-09
+[2018-09-24 22:04:20] Repository http://download.eclipse.org/releases/2018-09/201809191002
+[2018-09-24 22:04:20] Repository http://download.eclipse.org/oomph/updates/milestone/latest
+[2018-09-24 22:04:24] ERROR: org.eclipse.oomph.p2.core code=0 java.lang.IllegalStateException: BundleContext is no longer valid
+org.eclipse.oomph.util.ReflectUtil$ReflectionException: java.lang.IllegalStateException: BundleContext is no longer valid
+  at org.eclipse.oomph.util.ReflectUtil.invokeMethod(ReflectUtil.java:132)
+  at org.eclipse.oomph.p2.internal.core.CachingRepositoryManager.basicGetRepository(CachingRepositoryManager.java:336)
+  at org.eclipse.oomph.p2.internal.core.CachingRepositoryManager.loadRepository(CachingRepositoryManager.java:173)
+  at org.eclipse.oomph.p2.internal.core.CachingRepositoryManager$Metadata.loadRepository(CachingRepositoryManager.java:476)
+  at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:110)
+  at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:105)
+  at org.eclipse.oomph.p2.internal.core.ProfileTransactionImpl.collectRepositories(ProfileTransactionImpl.java:865)
+  at org.eclipse.oomph.p2.internal.core.ProfileTransactionImpl.resolve(ProfileTransactionImpl.java:379)
+  at org.eclipse.oomph.p2.internal.core.ProfileTransactionImpl.commit(ProfileTransactionImpl.java:337)
+  at org.eclipse.oomph.setup.p2.impl.P2TaskImpl.perform(P2TaskImpl.java:733)
+  at org.eclipse.oomph.setup.internal.core.SetupTaskPerformer.doPerformNeededSetupTasks(SetupTaskPerformer.java:3334)
+  at org.eclipse.oomph.setup.internal.core.SetupTaskPerformer.performNeededSetupTasks(SetupTaskPerformer.java:3262)
+  at org.eclipse.oomph.setup.internal.core.SetupTaskPerformer.performTriggeredSetupTasks(SetupTaskPerformer.java:3243)
+  at org.eclipse.oomph.setup.internal.core.SetupTaskPerformer.perform(SetupTaskPerformer.java:3143)
+  at org.eclipse.oomph.setup.internal.installer.SimpleVariablePage.installPerform(SimpleVariablePage.java:1298)
+  at org.eclipse.oomph.setup.internal.installer.SimpleVariablePage.access$32(SimpleVariablePage.java:1166)
+  at org.eclipse.oomph.setup.internal.installer.SimpleVariablePage$20.run(SimpleVariablePage.java:1111)
+Caused by: java.lang.IllegalStateException: BundleContext is no longer valid
+  at org.eclipse.osgi.internal.framework.BundleContextImpl.checkValid(BundleContextImpl.java:992)
+  at org.eclipse.osgi.internal.framework.BundleContextImpl.getServiceReference(BundleContextImpl.java:567)
+  at org.eclipse.osgi.internal.framework.BundleContextImpl.getServiceReference(BundleContextImpl.java:1019)
+  at org.eclipse.equinox.internal.p2.core.helpers.ServiceHelper.getService(ServiceHelper.java:32)
+  at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.getSharedPreferences(AbstractRepositoryManager.java:515)
+  at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.restoreRepositories(AbstractRepositoryManager.java:1018)
+  at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.basicGetRepository(AbstractRepositoryManager.java:184)
+  at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+  at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+  at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+  at java.lang.reflect.Method.invoke(Unknown Source)
+  at org.eclipse.oomph.util.ReflectUtil.invokeMethod(ReflectUtil.java:117)
+  at org.eclipse.oomph.p2.internal.core.CachingRepositoryManager.basicGetRepository(CachingRepositoryManager.java:336)
+  at org.eclipse.oomph.p2.internal.core.CachingRepositoryManager.loadRepository(CachingRepositoryManager.java:173)
+  at org.eclipse.oomph.p2.internal.core.CachingRepositoryManager$Metadata.loadRepository(CachingRepositoryManager.java:476)
+  at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:110)
+  at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:105)
+  at org.eclipse.oomph.p2.internal.core.ProfileTransactionImpl.collectRepositories(ProfileTransactionImpl.java:865)
+  at org.eclipse.oomph.p2.internal.core.ProfileTransactionImpl.resolve(ProfileTransactionImpl.java:379)
+  at org.eclipse.oomph.p2.internal.core.ProfileTransactionImpl.commit(ProfileTransactionImpl.java:337)
+  at org.eclipse.oomph.setup.p2.impl.P2TaskImpl.perform(P2TaskImpl.java:733)
+  at org.eclipse.oomph.setup.internal.core.SetupTaskPerformer.doPerformNeededSetupTasks(SetupTaskPerformer.java:3334)
+  at org.eclipse.oomph.setup.internal.core.SetupTaskPerformer.performNeededSetupTasks(SetupTaskPerformer.java:3262)
+  at org.eclipse.oomph.setup.internal.core.SetupTaskPerformer.performTriggeredSetupTasks(SetupTaskPerformer.java:3243)
+  at org.eclipse.oomph.setup.internal.core.SetupTaskPerformer.perform(SetupTaskPerformer.java:3143)
+  at org.eclipse.oomph.setup.internal.installer.SimpleVariablePage.installPerform(SimpleVariablePage.java:1298)
+  at org.eclipse.oomph.setup.internal.installer.SimpleVariablePage.access$32(SimpleVariablePage.java:1166)
+  ... 1 more
+
+[2018-09-24 22:04:24] 

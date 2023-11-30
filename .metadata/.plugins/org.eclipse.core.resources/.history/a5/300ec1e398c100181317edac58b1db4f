@@ -1,0 +1,241 @@
+package main_page;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.ImageIcon;
+import java.awt.Color;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JRadioButton;
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+import java.awt.Component;
+import javax.swing.ButtonGroup;
+import javax.swing.JComboBox;
+import javax.swing.JTextArea;
+import javax.swing.JSeparator;
+import javax.swing.JScrollBar;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.EtchedBorder;
+
+
+public class main_p {
+
+	private JFrame frame;
+	private JTextField textField;
+	private JTextField textField_1;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					main_p window = new main_p();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public main_p() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 1650, 1000);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		//frame.isUndecorated(true);
+		
+		ButtonGroup btngrp  = new ButtonGroup();
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
+		panel.setBounds(0, 0, 1634, 184);
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon(main_p.class.getResource("/images/VIR INSURANCE.jpg")));
+		lblNewLabel.setBounds(-35, 0, 484, 184);
+		panel.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Agent Details & Policies Sold");
+		lblNewLabel_1.setForeground(new Color(241,57,83));
+		lblNewLabel_1.setBackground(Color.WHITE);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 45));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(495, 195, 664, 98);
+		frame.getContentPane().add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("Name :");
+		lblNewLabel_2.setForeground(new Color(241,57,83));
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblNewLabel_2.setBounds(48, 324, 194, 41);
+		frame.getContentPane().add(lblNewLabel_2);
+		
+		textField = new JTextField();
+		textField.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		textField.setBounds(48, 364, 319, 41);
+		frame.getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblGender = new JLabel("Gender :");
+		lblGender.setForeground(new Color(241,57,83));
+		lblGender.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblGender.setBounds(48, 437, 194, 41);
+		frame.getContentPane().add(lblGender);
+		
+		JLabel lblDateOfBirth = new JLabel("Date Of Birth :");
+		lblDateOfBirth.setForeground(new Color(241,57,83));
+		lblDateOfBirth.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblDateOfBirth.setBounds(48, 555, 194, 41);
+		frame.getContentPane().add(lblDateOfBirth);
+		
+		JLabel lblAddress = new JLabel("Address :");
+		lblAddress.setForeground(new Color(241,57,83));
+		lblAddress.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblAddress.setBounds(48, 678, 194, 41);
+		frame.getContentPane().add(lblAddress);
+		
+		JRadioButton malerdbtn = new JRadioButton("Male");
+		malerdbtn.setForeground(Color.DARK_GRAY);
+		malerdbtn.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		malerdbtn.setBounds(48, 485, 142, 41);
+		frame.getContentPane().add(malerdbtn);
+		
+		JRadioButton femalerdbtn = new JRadioButton("Female");
+		femalerdbtn.setForeground(Color.DARK_GRAY);
+		femalerdbtn.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		femalerdbtn.setBounds(213, 485, 142, 41);
+		frame.getContentPane().add(femalerdbtn);
+		
+		btngrp.add(malerdbtn);
+		btngrp.add(femalerdbtn);
+		
+		String[] dayarr = new String[31];
+
+        for (int i = 1; i < 32; i++) {
+            dayarr[i - 1] = Integer.toString(i);
+        }
+        
+        String monarr[] = new String[12];
+        for (int i = 1; i < 13; i++) {
+            monarr[i - 1] = Integer.toString(i);
+        }
+        
+        String yeararr[] = new String[78];
+        
+        for (int j = 1940, k = 0; j < 2018; j++, k++) {
+            yeararr[k] = Integer.toString(j);
+
+        }
+		
+		JComboBox datecb = new JComboBox(dayarr);
+		datecb.setBounds(48, 607, 70, 41);
+		frame.getContentPane().add(datecb);
+		
+		JComboBox monthcb = new JComboBox(monarr);
+		monthcb.setBounds(144, 607, 70, 41);
+		frame.getContentPane().add(monthcb);
+		
+		JComboBox yearcb = new JComboBox(yeararr);
+		yearcb.setBounds(236, 607, 103, 41);
+		frame.getContentPane().add(yearcb);
+		
+		JTextArea addressta = new JTextArea();
+		addressta.setFont(new Font("Monospaced", Font.PLAIN, 17));
+		addressta.setBounds(48, 730, 319, 165);
+		frame.getContentPane().add(addressta);
+		
+		JScrollBar scrollBar = new JScrollBar();
+		scrollBar.setBounds(362, 730, 29, 165);
+		frame.getContentPane().add(scrollBar);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
+		panel_1.setBackground(Color.WHITE);
+		panel_1.setBounds(479, 306, 609, 634);
+		frame.getContentPane().add(panel_1);
+		panel_1.setLayout(null);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setFont(new Font("Monospaced", Font.PLAIN, 17));
+		textArea.setBounds(0, 423, 319, 165);
+		panel_1.add(textArea);
+		
+		JScrollBar scrollBar_1 = new JScrollBar();
+		scrollBar_1.setBounds(314, 423, 29, 165);
+		panel_1.add(scrollBar_1);
+		
+		JLabel label = new JLabel("Address :");
+		label.setForeground(new Color(241, 57, 83));
+		label.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		label.setBounds(0, 354, 194, 41);
+		panel_1.add(label);
+		
+		JComboBox comboBox = new JComboBox(new Object[]{});
+		comboBox.setBounds(0, 283, 70, 41);
+		panel_1.add(comboBox);
+		
+		JComboBox comboBox_1 = new JComboBox(new Object[]{});
+		comboBox_1.setBounds(96, 283, 70, 41);
+		panel_1.add(comboBox_1);
+		
+		JComboBox comboBox_2 = new JComboBox(new Object[]{});
+		comboBox_2.setBounds(188, 283, 103, 41);
+		panel_1.add(comboBox_2);
+		
+		JLabel label_1 = new JLabel("Date Of Birth :");
+		label_1.setForeground(new Color(241, 57, 83));
+		label_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		label_1.setBounds(0, 231, 194, 41);
+		panel_1.add(label_1);
+		
+		JRadioButton radioButton = new JRadioButton("Male");
+		radioButton.setForeground(Color.DARK_GRAY);
+		radioButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		radioButton.setBounds(0, 161, 142, 41);
+		panel_1.add(radioButton);
+		
+		JRadioButton radioButton_1 = new JRadioButton("Female");
+		radioButton_1.setForeground(Color.DARK_GRAY);
+		radioButton_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		radioButton_1.setBounds(165, 161, 142, 41);
+		panel_1.add(radioButton_1);
+		
+		JLabel label_2 = new JLabel("Gender :");
+		label_2.setForeground(new Color(241, 57, 83));
+		label_2.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		label_2.setBounds(0, 113, 194, 41);
+		panel_1.add(label_2);
+		
+		textField_1 = new JTextField();
+		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		textField_1.setColumns(10);
+		textField_1.setBounds(0, 40, 319, 41);
+		panel_1.add(textField_1);
+		
+		JLabel label_3 = new JLabel("Name :");
+		label_3.setForeground(new Color(241, 57, 83));
+		label_3.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		label_3.setBounds(0, 0, 194, 41);
+		panel_1.add(label_3);
+		frame.getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblNewLabel_2, textField, lblGender, malerdbtn, femalerdbtn, lblDateOfBirth, lblAddress, panel, lblNewLabel, lblNewLabel_1}));
+	}
+}

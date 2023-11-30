@@ -1,0 +1,260 @@
+package main_page;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.ImageIcon;
+import java.awt.Color;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JRadioButton;
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+import java.awt.Component;
+import javax.swing.ButtonGroup;
+import javax.swing.JComboBox;
+import javax.swing.JTextArea;
+import javax.swing.JSeparator;
+import javax.swing.JScrollBar;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.EtchedBorder;
+import java.awt.SystemColor;
+import javax.swing.JTree;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.DefaultMutableTreeNode;
+import java.awt.CardLayout;
+
+
+public class main_p {
+
+	private JFrame frame;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					main_p window = new main_p();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public main_p() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 1650, 1000);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		//frame.isUndecorated(true);
+		
+		ButtonGroup btngrp  = new ButtonGroup();
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
+		panel.setBounds(0, 0, 1634, 184);
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon(main_p.class.getResource("/images/VIR INSURANCE.jpg")));
+		lblNewLabel.setBounds(-35, 0, 484, 184);
+		panel.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Agent Details & Policies Sold");
+		lblNewLabel_1.setForeground(new Color(241,57,83));
+		lblNewLabel_1.setBackground(Color.WHITE);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 45));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(495, 195, 664, 98);
+		frame.getContentPane().add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("Name :");
+		lblNewLabel_2.setForeground(new Color(241,57,83));
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblNewLabel_2.setBounds(48, 324, 194, 41);
+		frame.getContentPane().add(lblNewLabel_2);
+		
+		textField = new JTextField();
+		textField.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		textField.setBounds(48, 364, 319, 41);
+		frame.getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblGender = new JLabel("Gender :");
+		lblGender.setForeground(new Color(241,57,83));
+		lblGender.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblGender.setBounds(48, 437, 194, 41);
+		frame.getContentPane().add(lblGender);
+		
+		JLabel lblDateOfBirth = new JLabel("Date Of Birth :");
+		lblDateOfBirth.setForeground(new Color(241,57,83));
+		lblDateOfBirth.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblDateOfBirth.setBounds(48, 555, 194, 41);
+		frame.getContentPane().add(lblDateOfBirth);
+		
+		JLabel lblAddress = new JLabel("Address :");
+		lblAddress.setForeground(new Color(241,57,83));
+		lblAddress.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblAddress.setBounds(48, 678, 194, 41);
+		frame.getContentPane().add(lblAddress);
+		
+		JRadioButton malerdbtn = new JRadioButton("Male");
+		malerdbtn.setForeground(Color.DARK_GRAY);
+		malerdbtn.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		malerdbtn.setBounds(48, 485, 142, 41);
+		frame.getContentPane().add(malerdbtn);
+		
+		JRadioButton femalerdbtn = new JRadioButton("Female");
+		femalerdbtn.setForeground(Color.DARK_GRAY);
+		femalerdbtn.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		femalerdbtn.setBounds(213, 485, 142, 41);
+		frame.getContentPane().add(femalerdbtn);
+		
+		btngrp.add(malerdbtn);
+		btngrp.add(femalerdbtn);
+		
+		String[] dayarr = new String[31];
+
+        for (int i = 1; i < 32; i++) {
+            dayarr[i - 1] = Integer.toString(i);
+        }
+        
+        String monarr[] = new String[12];
+        for (int i = 1; i < 13; i++) {
+            monarr[i - 1] = Integer.toString(i);
+        }
+        
+        String yeararr[] = new String[78];
+        
+        for (int j = 1940, k = 0; j < 2018; j++, k++) {
+            yeararr[k] = Integer.toString(j);
+
+        }
+		
+		JComboBox datecb = new JComboBox(dayarr);
+		datecb.setBounds(48, 607, 70, 41);
+		frame.getContentPane().add(datecb);
+		
+		JComboBox monthcb = new JComboBox(monarr);
+		monthcb.setBounds(144, 607, 70, 41);
+		frame.getContentPane().add(monthcb);
+		
+		JComboBox yearcb = new JComboBox(yeararr);
+		yearcb.setBounds(236, 607, 103, 41);
+		frame.getContentPane().add(yearcb);
+		
+		JTextArea addressta = new JTextArea();
+		addressta.setFont(new Font("Monospaced", Font.PLAIN, 17));
+		addressta.setBounds(48, 730, 319, 165);
+		frame.getContentPane().add(addressta);
+		
+		JScrollBar scrollBar = new JScrollBar();
+		scrollBar.setBounds(362, 730, 29, 165);
+		frame.getContentPane().add(scrollBar);
+		
+		JLabel lblNewLabel_3 = new JLabel("Work Experience (Yrs) :");
+		lblNewLabel_3.setForeground(new Color(241,57,83));
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblNewLabel_3.setBounds(536, 324, 295, 41);
+		frame.getContentPane().add(lblNewLabel_3);
+		
+		textField_1 = new JTextField();
+		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		textField_1.setColumns(10);
+		textField_1.setBounds(536, 364, 319, 41);
+		frame.getContentPane().add(textField_1);
+		
+		JLabel lblMobile = new JLabel("Mobile :");
+		lblMobile.setForeground(new Color(241,57,83));
+		lblMobile.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblMobile.setBounds(536, 448, 194, 41);
+		frame.getContentPane().add(lblMobile);
+		
+		textField_2 = new JTextField();
+		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		textField_2.setColumns(10);
+		textField_2.setBounds(536, 486, 319, 41);
+		frame.getContentPane().add(textField_2);
+		
+		JLabel lblEmail = new JLabel("Email :");
+		lblEmail.setForeground(new Color(241,57,83));
+		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblEmail.setBounds(536, 572, 194, 41);
+		frame.getContentPane().add(lblEmail);
+		
+		textField_3 = new JTextField();
+		textField_3.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		textField_3.setColumns(10);
+		textField_3.setBounds(536, 616, 319, 41);
+		frame.getContentPane().add(textField_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("Policies");
+		lblNewLabel_4.setForeground(new Color(241,57,83));
+		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 35));
+		lblNewLabel_4.setBounds(1182, 293, 310, 53);
+		frame.getContentPane().add(lblNewLabel_4);
+		
+		JPanel insurancepanel = new JPanel();
+		insurancepanel.setForeground(Color.WHITE);
+		insurancepanel.setBounds(930, 364, 231, 555);
+		frame.getContentPane().add(insurancepanel);
+		insurancepanel.setLayout(null);
+		
+		JTree tree = new JTree();
+		tree.setBounds(0, 0, 229, 555);
+		tree.setBackground(Color.WHITE);
+		tree.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
+		tree.setEditable(true);
+		tree.setForeground(Color.WHITE);
+		tree.setFont(new Font("Tahoma", Font.ITALIC, 14));
+		tree.setModel(new DefaultTreeModel(
+			new DefaultMutableTreeNode("Insurance Policies") {
+				{
+					DefaultMutableTreeNode node_1;
+					node_1 = new DefaultMutableTreeNode("Term Plan");
+						node_1.add(new DefaultMutableTreeNode("40 Years Term"));
+						node_1.add(new DefaultMutableTreeNode("50 Years Term"));
+					add(node_1);
+					node_1 = new DefaultMutableTreeNode("Money Back Life Insurance");
+						node_1.add(new DefaultMutableTreeNode("20 Years Term "));
+						node_1.add(new DefaultMutableTreeNode("40 Years Term"));
+					add(node_1);
+					node_1 = new DefaultMutableTreeNode("Child Future Life Insurance");
+						node_1.add(new DefaultMutableTreeNode("20 Years Term"));
+						node_1.add(new DefaultMutableTreeNode("35 Years Term"));
+					add(node_1);
+				}
+			}
+		));
+		insurancepanel.add(tree);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(1157, 365, 434, 546);
+		frame.getContentPane().add(panel_1);
+		panel_1.setLayout(new CardLayout(0, 0));
+		frame.getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblNewLabel_2, textField, lblGender, malerdbtn, femalerdbtn, lblDateOfBirth, lblAddress, panel, lblNewLabel, lblNewLabel_1}));
+	}
+}

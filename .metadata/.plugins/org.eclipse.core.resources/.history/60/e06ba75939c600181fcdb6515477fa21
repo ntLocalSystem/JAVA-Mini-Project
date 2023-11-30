@@ -1,0 +1,1250 @@
+package main_page;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.ImageIcon;
+import java.awt.Color;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JRadioButton;
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+
+import net.proteanit.sql.DbUtils;
+
+import java.awt.Component;
+import javax.swing.ButtonGroup;
+import javax.swing.JComboBox;
+import javax.swing.JTextArea;
+import javax.swing.JSeparator;
+import javax.swing.JScrollBar;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.EtchedBorder;
+import java.awt.SystemColor;
+import javax.swing.JTree;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.DefaultMutableTreeNode;
+import java.awt.CardLayout;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.event.TreeSelectionListener;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
+import java.sql.*;
+
+
+
+public class main_p {
+
+	private JFrame frame;
+	private JTable table_1;
+	private JTextField nametf;
+	private JTextField worketf;
+	private JTextField mobiletf;
+	private JTextField emailtf;
+	private JTable table;
+	private JTable table_2;
+	private JTable table_3;
+	private JTextField aidtf;
+	private JTable table_4;
+	int genderval=0;
+	int cgenderval=0;
+	int insuranceval=0;
+	private JTextField cnametf;
+	private JTextField cmobtf;
+	private JTextField cemailtf;
+	private JTextField csalarytf;
+	private JTextField caidtf;
+	private JTable tinsurancetable;
+	private JTable cinsurancetable;
+	private JTable winsurancetable;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					main_p window = new main_p();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public main_p() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 1650, 1000);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//frame.setResizable(false);
+		
+		/*
+		String[] dayarr = new String[31];
+		int i;
+
+        for (i = 1; i < 32; i++) {
+            dayarr[i - 1] = Integer.toString(i);
+        }
+        
+        String monarr[] = new String[12];
+        for (i = 1; i < 13; i++) {
+            monarr[i - 1] = Integer.toString(i);
+        }
+        
+        String yeararr[] = new String[100];
+        int j,k;
+        for (j= 1940, k = 0; j < 2018; j++, k++) {
+            yeararr[k] = Integer.toString(j);
+
+        }
+		
+		*/
+		
+		CardLayout cl4 =  new CardLayout(0,0);
+		
+		String[] dayarr = new String[31];
+
+        for (int i = 1; i < 32; i++) {
+            dayarr[i - 1] = Integer.toString(i);
+        }
+        
+        String monarr[] = new String[12];
+        for (int i = 1; i < 13; i++) {
+            monarr[i - 1] = Integer.toString(i);
+        }
+        
+        String yeararr[] = new String[78];
+        
+        for (int j = 1940, k = 0; j < 2018; j++, k++) {
+            yeararr[k] = Integer.toString(j);
+
+        }
+        
+        ButtonGroup btngrp1 = new ButtonGroup();
+		
+		ImageIcon icon11 = new ImageIcon("/java_project/src/images/VIR INSURANCE_cropped.jpg");
+        frame.setIconImage(icon11.getImage());
+		
+		
+		ButtonGroup btngrp  = new ButtonGroup();
+		frame.getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 1634, 188);
+		panel.setBackground(Color.DARK_GRAY);
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon(main_p.class.getResource("/images/VIR INSURANCE.jpg")));
+		lblNewLabel.setBounds(0, 0, 518, 188);
+		panel.add(lblNewLabel);
+		
+		JLabel lblNewLabel_2 = new JLabel("resiz");
+		lblNewLabel_2.setIcon(new ImageIcon(main_p.class.getResource("/images/security_agent_add_2_190x142.png")));
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setBounds(526, 0, 178, 142);
+		panel.add(lblNewLabel_2);
+		
+		JButton btnNewButton = new JButton("Add Agent");
+		
+		btnNewButton.setBackground(new Color(241, 57, 83));
+		btnNewButton.setForeground(Color.WHITE);
+		btnNewButton.setBounds(526, 142, 178, 46);
+		panel.add(btnNewButton);
+		
+		JLabel label_10 = new JLabel("resiz");
+		label_10.setIcon(new ImageIcon(main_p.class.getResource("/images/Online_Agent_New_190x142.jpg")));
+		label_10.setHorizontalAlignment(SwingConstants.CENTER);
+		label_10.setBounds(745, 0, 178, 142);
+		panel.add(label_10);
+		
+		JButton btnViewagent = new JButton("View Agent");
+		
+		btnViewagent.setForeground(Color.WHITE);
+		btnViewagent.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnViewagent.setBackground(new Color(241, 57, 83));
+		btnViewagent.setBounds(745, 142, 178, 46);
+		panel.add(btnViewagent);
+		
+		JPanel grandfatherpanel = new JPanel();
+		grandfatherpanel.setBounds(0, 189, 1632, 764);
+		frame.getContentPane().add(grandfatherpanel);
+		CardLayout cl = new CardLayout(0, 0);
+		grandfatherpanel.setLayout(cl);
+		
+		JPanel viewagentpanel = new JPanel();
+		grandfatherpanel.add(viewagentpanel, "name_19239332734906");
+		viewagentpanel.setLayout(null);
+		
+		JLabel lblagentDetails = new JLabel("<html><u>Agent Details <u><html>");
+		lblagentDetails.setBounds(490, 22, 652, 72);
+		lblagentDetails.setHorizontalAlignment(SwingConstants.CENTER);
+		lblagentDetails.setForeground(new Color(241, 57, 83));
+		lblagentDetails.setFont(new Font("Tahoma", Font.BOLD, 45));
+		lblagentDetails.setBackground(Color.WHITE);
+		viewagentpanel.add(lblagentDetails);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(84, 165, 1480, 556);
+		viewagentpanel.add(scrollPane);
+		
+		table_4 = new JTable();
+		table_4.setRowHeight(50);
+		scrollPane.setViewportView(table_4);
+		
+		JButton tablerefreshbtn = new JButton("Refresh Agent Details");
+		tablerefreshbtn.setFont(new Font("Tahoma", Font.BOLD, 15));
+		tablerefreshbtn.setBackground(new Color(241, 57, 83));
+		tablerefreshbtn.setForeground(Color.WHITE);
+		tablerefreshbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event1) {
+				try {
+						Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mini_project?verifyServerCertificate=false&useSSL=true","root","");
+						
+						String tablepopulate = "select * from agentinfo";
+						PreparedStatement stmt = con.prepareStatement(tablepopulate);
+						ResultSet rs  = stmt.executeQuery();
+						table_4.setModel(DbUtils.resultSetToTableModel(rs));
+						viewagentpanel.revalidate();
+						
+				
+					}
+				
+				catch(Exception except){
+					
+						System.out.println(except);
+					
+					}
+				
+				
+				
+				}
+			
+				
+				
+			}
+		);
+		tablerefreshbtn.setBounds(1287, 93, 277, 48);
+		viewagentpanel.add(tablerefreshbtn);
+		
+		JPanel addagentpanel = new JPanel();
+		addagentpanel.setForeground(new Color(241, 57, 83));
+		grandfatherpanel.add(addagentpanel, "name_19239371696803");
+		addagentpanel.setLayout(null);
+		
+		JLabel label = new JLabel("<html><u>Agent Details & Policies Sold<u><html>");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setForeground(new Color(241, 57, 83));
+		label.setFont(new Font("Tahoma", Font.BOLD, 45));
+		label.setBackground(Color.WHITE);
+		label.setBounds(488, 13, 664, 98);
+		addagentpanel.add(label);
+		
+		JLabel label_1 = new JLabel("Name :");
+		label_1.setForeground(new Color(241, 57, 83));
+		label_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		label_1.setBounds(41, 129, 194, 41);
+		addagentpanel.add(label_1);
+		
+		nametf = new JTextField();
+		nametf.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		nametf.setColumns(10);
+		nametf.setBounds(41, 169, 319, 41);
+		addagentpanel.add(nametf);
+		
+		JLabel label_2 = new JLabel("Gender :");
+		label_2.setForeground(new Color(241, 57, 83));
+		label_2.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		label_2.setBounds(41, 242, 194, 41);
+		addagentpanel.add(label_2);
+		
+		JLabel label_3 = new JLabel("Date Of Birth :");
+		label_3.setForeground(new Color(241, 57, 83));
+		label_3.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		label_3.setBounds(41, 363, 194, 41);
+		addagentpanel.add(label_3);
+		
+		JLabel label_4 = new JLabel("Address :");
+		label_4.setForeground(new Color(241, 57, 83));
+		label_4.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		label_4.setBounds(41, 483, 194, 41);
+		addagentpanel.add(label_4);
+		
+		JRadioButton malerd = new JRadioButton("Male");
+		malerd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent malerdevent) {
+				malerdbtn();
+				
+				
+			}
+		});
+		malerd.setForeground(Color.DARK_GRAY);
+		malerd.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		malerd.setBounds(41, 290, 142, 41);
+		addagentpanel.add(malerd);
+		
+		JRadioButton femalerd = new JRadioButton("Female");
+		femalerd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent femaleevent) {
+				femalerdbtn();
+			}
+		});
+		femalerd.setForeground(Color.DARK_GRAY);
+		femalerd.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		femalerd.setBounds(206, 290, 142, 41);
+		addagentpanel.add(femalerd);
+		
+		JComboBox datecb = new JComboBox(dayarr);
+		datecb.setBounds(41, 415, 70, 41);
+		addagentpanel.add(datecb);
+		
+		JComboBox monthcb = new JComboBox(monarr);
+		monthcb.setBounds(137, 415, 70, 41);
+		addagentpanel.add(monthcb);
+		
+		JComboBox yearcb = new JComboBox(yeararr);
+		yearcb.setBounds(229, 415, 103, 41);
+		addagentpanel.add(yearcb);
+		
+		JTextArea addressta = new JTextArea();
+		addressta.setFont(new Font("Monospaced", Font.PLAIN, 17));
+		addressta.setBounds(41, 535, 319, 165);
+		addagentpanel.add(addressta);
+		
+		JLabel label_5 = new JLabel("Work Experience (Yrs) :");
+		label_5.setForeground(new Color(241, 57, 83));
+		label_5.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		label_5.setBounds(488, 129, 295, 41);
+		addagentpanel.add(label_5);
+		
+		worketf = new JTextField();
+		worketf.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		worketf.setColumns(10);
+		worketf.setBounds(488, 169, 319, 41);
+		addagentpanel.add(worketf);
+		
+		JLabel lblTelephone = new JLabel("Telephone :");
+		lblTelephone.setForeground(new Color(241, 57, 83));
+		lblTelephone.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblTelephone.setBounds(488, 252, 194, 41);
+		addagentpanel.add(lblTelephone);
+		
+		mobiletf = new JTextField();
+		mobiletf.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		mobiletf.setColumns(10);
+		mobiletf.setBounds(488, 291, 319, 41);
+		addagentpanel.add(mobiletf);
+		
+		JLabel label_7 = new JLabel("Email :");
+		label_7.setForeground(new Color(241, 57, 83));
+		label_7.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		label_7.setBounds(488, 374, 194, 41);
+		addagentpanel.add(label_7);
+		
+		emailtf = new JTextField();
+		emailtf.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		emailtf.setColumns(10);
+		emailtf.setBounds(488, 412, 319, 41);
+		addagentpanel.add(emailtf);
+		
+		JLabel label_8 = new JLabel("Policy Details");
+		label_8.setHorizontalAlignment(SwingConstants.CENTER);
+		label_8.setForeground(new Color(241, 57, 83));
+		label_8.setFont(new Font("Tahoma", Font.BOLD, 35));
+		label_8.setBounds(1015, 99, 310, 53);
+		addagentpanel.add(label_8);
+		
+		JPanel insurancespanel = new JPanel();
+		insurancespanel.setLayout(null);
+		insurancespanel.setForeground(Color.WHITE);
+		insurancespanel.setBounds(890, 169, 231, 480);
+		addagentpanel.add(insurancespanel);
+		
+		
+	
+		
+		JButton button_1 = new JButton("Child Plan Insurance");
+		
+		button_1.setForeground(Color.WHITE);
+		button_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		button_1.setBackground(new Color(241, 57, 83));
+		button_1.setBounds(0, 79, 231, 42);
+		insurancespanel.add(button_1);
+		
+		JButton button_2 = new JButton("Whole Life Insurance");
+		
+		button_2.setForeground(Color.WHITE);
+		button_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		button_2.setBackground(new Color(241, 57, 83));
+		button_2.setBounds(0, 156, 231, 42);
+		insurancespanel.add(button_2);
+		
+		JButton btnTermLifeInsurance = new JButton("Term Life Insurance");
+		
+		btnTermLifeInsurance.setForeground(Color.WHITE);
+		btnTermLifeInsurance.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnTermLifeInsurance.setBackground(new Color(241, 57, 83));
+		btnTermLifeInsurance.setBounds(0, 0, 231, 42);
+		insurancespanel.add(btnTermLifeInsurance);
+		
+		JPanel parentpanel = new JPanel();
+		parentpanel.setBorder(new EtchedBorder(EtchedBorder.RAISED, (new Color(241,57,83)), null));
+		parentpanel.setBounds(1150, 170, 434, 480);
+		addagentpanel.add(parentpanel);
+		CardLayout cl3 = new CardLayout(0,0);
+		parentpanel.setLayout(cl3);
+		
+		JPanel lifelinsurancepanel = new JPanel();
+		parentpanel.add(lifelinsurancepanel, "name_131091957135037");
+		lifelinsurancepanel.setLayout(null);
+		
+		
+		JLabel lblWholeLife = new JLabel("* Whole Life Insurance is selected.");
+		lblWholeLife.setForeground(new Color(241, 57, 83));
+		lblWholeLife.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblWholeLife.setBackground(Color.WHITE);
+		lblWholeLife.setBounds(0, 420, 430, 56);
+		lifelinsurancepanel.add(lblWholeLife);
+		
+		
+		
+		JPanel childinsurancepanel = new JPanel();
+		parentpanel.add(childinsurancepanel, "name_130839478752224");
+		childinsurancepanel.setLayout(null);
+		
+		
+		
+		JPanel terminsurancepanel = new JPanel();
+		parentpanel.add(terminsurancepanel, "name_130515214938554");
+		terminsurancepanel.setLayout(null);
+		
+		JPanel redundantpanel2 = new JPanel();
+		parentpanel.add(redundantpanel2, "name_63847240216221");
+		
+		cl3.show(parentpanel, "name_63847240216221");
+		
+		
+		JComboBox datecb1 = new JComboBox(dayarr);
+		datecb1.setBounds(488, 516, 70, 41);
+		addagentpanel.add(datecb1);
+		
+		JComboBox monthcb1 = new JComboBox(monarr);
+		monthcb1.setBounds(585, 516, 70, 41);
+		addagentpanel.add(monthcb1);
+		
+		JComboBox yearcb1 = new JComboBox(yeararr);
+		yearcb1.setBounds(680, 516, 103, 41);
+		addagentpanel.add(yearcb1);
+		
+		JLabel label_9 = new JLabel("Date Of Joining :");
+		label_9.setForeground(new Color(241, 57, 83));
+		label_9.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		label_9.setBounds(488, 464, 194, 41);
+		addagentpanel.add(label_9);
+		
+		
+		
+		String column[]={"AGE","TERM","SUM ASSURESD","PREMIMUM"};  
+		String data[][]={{"AGE","TERM","SUM ASSURESD","PREMIMUM"}, {"25 Years","40 Years","Rs . 1 Cr."," Rs . 10,500"},    
+                {"35 Years","30 Years","Rs . 25 Lakhs","Rs . 8,800"}}; 
+		
+		String column1[]={"TERM","SUM ASSURED","PREMIUM"};  
+		String data1[][]={{"TERM","SUM ASSURED","PREMIUM"}, {"20 Years","Rs.3 Lakhs","Rs.10,000"},    
+                {"35 Years","Rs.4 Lakhs","Rs.18,000"}}; 
+		
+		String column2[]={"TERM","SUM ASSURED","PREMIUM"};  
+		String data2[][]={{"TERM","SUM ASSURED","PREMIUM"}, {"20 Years","Rs.18 Lakhs","Rs.1 Lakh"},    
+                {"35 Years","Rs.40 Lakhs","Rs.4 Lakhs"}};
+		
+		
+
+		table_3 = new JTable(data1, column1);
+		table_3.setRowHeight(140);
+		table_3.setBounds(0, 0, 430, 420);
+		lifelinsurancepanel.add(table_3);
+		
+		table = new JTable(data, column);
+		table.setBounds(0, 0, 430, 420);
+		table.setRowHeight(140);
+		terminsurancepanel.add(table);
+		
+		JLabel lblNewLabel_1 = new JLabel("* Term Life Insurance is selected.");
+		lblNewLabel_1.setForeground(new Color(241, 57, 83));
+		lblNewLabel_1.setBackground(Color.WHITE);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_1.setBounds(0, 420, 430, 56);
+		terminsurancepanel.add(lblNewLabel_1);
+		
+		table_2 = new JTable(data2 , column2);
+		table_2.setBounds(0, 0, 430, 420);
+		table_2.setRowHeight(140);
+		childinsurancepanel.add(table_2);
+		
+		JLabel lblChildPlan = new JLabel("* Child Plan Insurance is selected.");
+		lblChildPlan.setForeground(new Color(241, 57, 83));
+		lblChildPlan.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblChildPlan.setBackground(Color.WHITE);
+		lblChildPlan.setBounds(0, 420, 430, 56);
+		childinsurancepanel.add(lblChildPlan);
+		
+		
+		
+		JLabel lblAgentId = new JLabel("Agent ID :");
+		lblAgentId.setForeground(new Color(241, 57, 83));
+		lblAgentId.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblAgentId.setBounds(488, 568, 194, 41);
+		addagentpanel.add(lblAgentId);
+		
+		aidtf = new JTextField();
+		aidtf.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		aidtf.setColumns(10);
+		aidtf.setBounds(488, 620, 319, 41);
+		addagentpanel.add(aidtf);
+		
+		JButton submitbtn = new JButton("SUBMIT");
+		
+		submitbtn.setForeground(Color.WHITE);
+		submitbtn.setFont(new Font("Tahoma", Font.BOLD, 15));
+		submitbtn.setBackground(new Color(241, 57, 83));
+		submitbtn.setBounds(532, 687, 231, 42);
+		addagentpanel.add(submitbtn);
+		
+		CardLayout cl2 =  new CardLayout(0, 0);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(890, 687, 461, 53);
+		addagentpanel.add(panel_1);
+		panel_1.setLayout(cl2);
+		
+		JPanel panel_3 = new JPanel();
+		panel_1.add(panel_3, "name_11001346500172");
+		panel_3.setLayout(null);
+		
+		JLabel lblNewLabel_3 = new JLabel("* Agent details have been submitted.");
+		lblNewLabel_3.setForeground(new Color(241, 57, 83));
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 17));
+		lblNewLabel_3.setBounds(0, 0, 451, 53);
+		panel_3.add(lblNewLabel_3);
+		
+		JPanel panel_4 = new JPanel();
+		panel_1.add(panel_4, "name_11082648641670");
+		
+		cl2.show(panel_1, "name_11082648641670");
+		
+		JLabel warninglabel = new JLabel("(8 Digit Number)");
+		warninglabel.setForeground(new Color(241, 57, 83));
+		warninglabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		warninglabel.setBounds(488, 336, 224, 20);
+		addagentpanel.add(warninglabel);
+		
+		JPanel redundantpanel = new JPanel();
+		grandfatherpanel.add(redundantpanel, "name_19239387057142");
+		
+		JPanel addcustomerpanel = new JPanel();
+		grandfatherpanel.add(addcustomerpanel, "name_19239433071790");
+		addcustomerpanel.setLayout(null);
+		
+		JLabel label_11 = new JLabel("Name :");
+		label_11.setForeground(new Color(241, 57, 83));
+		label_11.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		label_11.setBounds(34, 113, 194, 41);
+		addcustomerpanel.add(label_11);
+		
+		JLabel lblcustomerDetails = new JLabel("<html><u>Customer Details<u><html>");
+		lblcustomerDetails.setHorizontalAlignment(SwingConstants.CENTER);
+		lblcustomerDetails.setForeground(new Color(241, 57, 83));
+		lblcustomerDetails.setFont(new Font("Tahoma", Font.BOLD, 45));
+		lblcustomerDetails.setBackground(Color.WHITE);
+		lblcustomerDetails.setBounds(532, 0, 664, 98);
+		addcustomerpanel.add(lblcustomerDetails);
+		
+		cnametf = new JTextField();
+		cnametf.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		cnametf.setColumns(10);
+		cnametf.setBounds(34, 159, 319, 41);
+		addcustomerpanel.add(cnametf);
+		
+		JLabel label_12 = new JLabel("Gender :");
+		label_12.setForeground(new Color(241, 57, 83));
+		label_12.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		label_12.setBounds(34, 225, 194, 41);
+		addcustomerpanel.add(label_12);
+		
+		JRadioButton malerdbtn1 = new JRadioButton("Male");
+		malerdbtn1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent maleactionc) {
+				malerdbtn1();
+			}
+		});
+		malerdbtn1.setForeground(Color.DARK_GRAY);
+		malerdbtn1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		malerdbtn1.setBounds(34, 273, 142, 41);
+		addcustomerpanel.add(malerdbtn1);
+		
+		JRadioButton femalerdbtn1 = new JRadioButton("Female");
+		femalerdbtn1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent femaleaction1) {
+				
+				femalerdbtn1();
+			}
+		});
+		femalerdbtn1.setForeground(Color.DARK_GRAY);
+		femalerdbtn1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		femalerdbtn1.setBounds(199, 273, 142, 41);
+		addcustomerpanel.add(femalerdbtn1);
+		
+		btngrp1.add(malerdbtn1);
+		btngrp1.add(femalerdbtn1);
+		
+		JLabel label_13 = new JLabel("Date Of Birth :");
+		label_13.setForeground(new Color(241, 57, 83));
+		label_13.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		label_13.setBounds(34, 346, 194, 41);
+		addcustomerpanel.add(label_13);
+		
+		JComboBox cdatecb = new JComboBox(dayarr);
+		cdatecb.setBounds(34, 398, 70, 41);
+		addcustomerpanel.add(cdatecb);
+		
+		JComboBox cmonthcb = new JComboBox(monarr);
+		cmonthcb.setBounds(130, 398, 70, 41);
+		addcustomerpanel.add(cmonthcb);
+		
+		JComboBox cyearcb = new JComboBox(yeararr);
+		cyearcb.setBounds(222, 398, 103, 41);
+		addcustomerpanel.add(cyearcb);
+		
+		JLabel label_14 = new JLabel("Address :");
+		label_14.setForeground(new Color(241, 57, 83));
+		label_14.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		label_14.setBounds(34, 466, 194, 41);
+		addcustomerpanel.add(label_14);
+		
+		JTextArea caddressta = new JTextArea();
+		caddressta.setFont(new Font("Monospaced", Font.PLAIN, 17));
+		caddressta.setBounds(34, 518, 319, 165);
+		addcustomerpanel.add(caddressta);
+		
+		JLabel label_15 = new JLabel("Telephone :");
+		label_15.setForeground(new Color(241, 57, 83));
+		label_15.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		label_15.setBounds(438, 113, 194, 41);
+		addcustomerpanel.add(label_15);
+		
+		cmobtf = new JTextField();
+		cmobtf.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		cmobtf.setColumns(10);
+		cmobtf.setBounds(438, 152, 319, 41);
+		addcustomerpanel.add(cmobtf);
+		
+		JLabel label_16 = new JLabel("Email :");
+		label_16.setForeground(new Color(241, 57, 83));
+		label_16.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		label_16.setBounds(438, 225, 194, 41);
+		addcustomerpanel.add(label_16);
+		
+		cemailtf = new JTextField();
+		cemailtf.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		cemailtf.setColumns(10);
+		cemailtf.setBounds(438, 274, 319, 41);
+		addcustomerpanel.add(cemailtf);
+		
+		JLabel lblSalary = new JLabel("Salary :");
+		lblSalary.setForeground(new Color(241, 57, 83));
+		lblSalary.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblSalary.setBounds(438, 346, 194, 41);
+		addcustomerpanel.add(lblSalary);
+		
+		csalarytf = new JTextField();
+		csalarytf.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		csalarytf.setColumns(10);
+		csalarytf.setBounds(438, 384, 319, 41);
+		addcustomerpanel.add(csalarytf);
+		
+		JLabel lblEnterYourAgent = new JLabel("Enter Your Agent ID :");
+		lblEnterYourAgent.setForeground(new Color(241, 57, 83));
+		lblEnterYourAgent.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblEnterYourAgent.setBounds(438, 466, 319, 41);
+		addcustomerpanel.add(lblEnterYourAgent);
+		
+		caidtf = new JTextField();
+		caidtf.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		caidtf.setColumns(10);
+		caidtf.setBounds(438, 510, 319, 41);
+		addcustomerpanel.add(caidtf);
+		
+		JButton btnCheckInsurance = new JButton("Check Insurance");
+		
+		btnCheckInsurance.setForeground(Color.WHITE);
+		btnCheckInsurance.setFont(new Font("Tahoma", Font.BOLD, 20));
+		btnCheckInsurance.setBackground(new Color(241, 57, 83));
+		btnCheckInsurance.setBounds(438, 576, 319, 55);
+		addcustomerpanel.add(btnCheckInsurance);
+		
+		JPanel parentpanelc = new JPanel();
+		parentpanelc.setBorder(new EtchedBorder(EtchedBorder.RAISED, (new Color(241,57,83)), null));
+		parentpanelc.setBounds(897, 152, 689, 540);
+		addcustomerpanel.add(parentpanelc);
+		parentpanelc.setLayout(cl4);
+		
+		JPanel tinsurancepanel = new JPanel();
+		parentpanelc.add(tinsurancepanel, "name_73735057972235");
+		tinsurancepanel.setLayout(null);
+		
+		JScrollPane scrollPane_3 = new JScrollPane();
+		scrollPane_3.setBounds(0, 0, 685, 466);
+		tinsurancepanel.add(scrollPane_3);
+		
+		tinsurancetable = new JTable();
+		scrollPane_3.setViewportView(tinsurancetable);
+		
+		JLabel tinsurancelabel = new JLabel("* Term Insurance has been selected.");
+		tinsurancelabel.setHorizontalAlignment(SwingConstants.CENTER);
+		tinsurancelabel.setForeground(new Color(241,57,83));
+		tinsurancelabel.setFont(new Font("Tahoma", Font.ITALIC, 20));
+		tinsurancelabel.setBounds(0, 466, 685, 70);
+		tinsurancepanel.add(tinsurancelabel);
+		
+		JPanel cinsurancepanel = new JPanel();
+		parentpanelc.add(cinsurancepanel, "name_73791843709339");
+		cinsurancepanel.setLayout(null);
+		
+		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2.setBounds(0, 0, 685, 466);
+		cinsurancepanel.add(scrollPane_2);
+		
+		cinsurancetable = new JTable();
+		scrollPane_2.setViewportView(cinsurancetable);
+		
+		JLabel cinsurancelabel = new JLabel("* Child Plan Insurance has been selected.");
+		cinsurancelabel.setHorizontalAlignment(SwingConstants.CENTER);
+		cinsurancelabel.setForeground(new Color(241,57,83));
+		cinsurancelabel.setFont(new Font("Tahoma", Font.ITALIC, 20));
+		cinsurancelabel.setBounds(0, 466, 685, 70);
+		cinsurancepanel.add(cinsurancelabel);
+		
+		JPanel winsurancepanel = new JPanel();
+		parentpanelc.add(winsurancepanel, "name_73812949494419");
+		winsurancepanel.setLayout(null);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(0, 0, 685, 466);
+		winsurancepanel.add(scrollPane_1);
+		
+		winsurancetable = new JTable();
+		scrollPane_1.setViewportView(winsurancetable);
+		
+		JLabel lblWholeLife_1 = new JLabel("* Whole Life Insurance has been selected.");
+		lblWholeLife_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblWholeLife_1.setForeground(new Color(241,57,83));
+		lblWholeLife_1.setFont(new Font("Tahoma", Font.ITALIC, 20));
+		lblWholeLife_1.setBounds(0, 466, 685, 70);
+		winsurancepanel.add(lblWholeLife_1);
+		
+		JPanel credundantpanel = new JPanel();
+		parentpanelc.add(credundantpanel, "name_73862456257256");
+		
+		
+		
+		
+		
+		cl4.show(parentpanelc,"name_73862456257256");
+		
+		JButton btnSubmitDetails = new JButton("Submit Details");
+		
+		btnSubmitDetails.setForeground(Color.WHITE);
+		btnSubmitDetails.setFont(new Font("Tahoma", Font.BOLD, 20));
+		btnSubmitDetails.setBackground(new Color(241, 57, 83));
+		btnSubmitDetails.setBounds(438, 662, 319, 55);
+		addcustomerpanel.add(btnSubmitDetails);
+		
+		
+		
+		
+		
+		
+		
+		
+		cl.show(grandfatherpanel,"name_19239387057142");
+		
+		btnTermLifeInsurance.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event1) {
+				
+				cl3.show(parentpanel, "name_130515214938554");;
+				addagentpanel.revalidate();
+				insurancespanel.revalidate();
+				parentpanel.revalidate();
+				insurance1();
+				
+			}
+		});
+		
+		
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event3) {
+				
+				cl3.show(parentpanel, "name_131091957135037");
+				addagentpanel.revalidate();
+				insurancespanel.revalidate();
+				parentpanel.revalidate();
+				insurance3();
+				
+			}
+		});
+		
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event2) {
+				
+				cl3.show(parentpanel, "name_130839478752224");
+				addagentpanel.revalidate();
+				insurancespanel.revalidate();
+				parentpanel.revalidate();
+				insurance2();
+			}
+		});
+		
+		
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
+		JLabel label_6 = new JLabel("resiz");
+		label_6.setIcon(new ImageIcon(main_p.class.getResource("/images/Customer_Female_Add_190x142.jpg")));
+		label_6.setHorizontalAlignment(SwingConstants.CENTER);
+		label_6.setBounds(963, 0, 178, 142);
+		panel.add(label_6);
+		
+		JButton btnAddCustomer = new JButton("Add Customer");
+		btnAddCustomer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent customeraddevent) {
+				cl.show(grandfatherpanel,"name_19239433071790");
+				grandfatherpanel.revalidate();
+				frame.revalidate();
+				
+			}
+		});
+		btnAddCustomer.setForeground(Color.WHITE);
+		btnAddCustomer.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnAddCustomer.setBackground(new Color(241, 57, 83));
+		btnAddCustomer.setBounds(963, 142, 178, 46);
+		panel.add(btnAddCustomer);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cl.show(grandfatherpanel, "name_19239371696803");
+				grandfatherpanel.revalidate();
+				frame.revalidate();
+				
+			}
+		});
+		
+		submitbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent submitevent) {
+				if(genderval == 1)
+				{
+					try {
+						Connection conn1=DriverManager.getConnection("jdbc:mysql://localhost:3306/mini_project?verifyServerCertificate=false&useSSL=true","root","");
+						
+						
+						String updatequery = "insert into agentinfo values (?,?,?,?,?,?,?,?,?,?)";
+						PreparedStatement stmt = conn1.prepareStatement(updatequery);
+						
+						stmt.setString(1, nametf.getText());
+						stmt.setString(2, "Male");
+						
+						String dob;
+						String s1 = (String) yearcb.getSelectedItem();
+				        
+				        String s2 = (String) monthcb.getSelectedItem();
+				        
+				        String s3 = (String) datecb.getSelectedItem();
+				        
+				        dob = s1+"-"+s2+"-"+s3;
+				        stmt.setString(3, dob);
+				        
+				   
+				        String address = addressta.getText();
+				        stmt.setString(4, address);
+				        try {
+				        	int mob = Integer.parseInt(mobiletf.getText());
+					        stmt.setInt(5, mob);
+				        }
+				        catch(Exception e)
+				        {
+				        	warninglabel.setText("Enter a telephone number");
+				        }
+				        
+				        stmt.setString(6, emailtf.getText());
+				        String doj;
+				        String s4 = (String) yearcb1.getSelectedItem();
+				        
+				        String s5 = (String) monthcb1.getSelectedItem();
+				        
+				        String s6 = (String) datecb1.getSelectedItem();
+				        
+				        doj = s4+"-"+s5+"-"+s6;
+				        stmt.setString(7, doj);
+				        stmt.setInt(8, Integer.parseInt(aidtf.getText()));
+				        stmt.setInt(9, Integer.parseInt(worketf.getText()));
+				        if(insuranceval==1)
+				        {
+				        	stmt.setString(10, "Term Insurance");
+				        }
+				        if(insuranceval==2)
+				        {
+				        	stmt.setString(10, "Child Plan Insurance");
+				        }
+				        if(insuranceval==3)
+				        {
+				        	stmt.setString(10, "Whole Life Insurance");
+				        }
+				        stmt.executeUpdate();
+				
+						
+					} catch (SQLException except1) {
+						
+						System.out.println(except1);
+						
+						
+					}
+				}
+					
+				if(genderval==2)
+				{
+					
+					try {
+						Connection conn1=DriverManager.getConnection("jdbc:mysql://localhost:3306/mini_project?verifyServerCertificate=false&useSSL=true","root","");
+						
+						
+						String updatequery = "insert into agentinfo values (?,?,?,?,?,?,?,?,?,?)  ";
+						PreparedStatement stmt = conn1.prepareStatement(updatequery);
+						
+						
+						stmt.setString(1, nametf.getText());
+						stmt.setString(2, "Female");
+						
+						String dob;
+						String s1 = (String) yearcb.getSelectedItem();
+				        
+				        String s2 = (String) monthcb.getSelectedItem();
+				       
+				        String s3 = (String) datecb.getSelectedItem();
+				        
+				        dob = s1+"-"+s2+"-"+s3;
+				        stmt.setString(3, dob);
+				        
+				   
+				        String address = addressta.getText();
+				        stmt.setString(4, address);
+				        try {
+				        	int mob = Integer.parseInt(mobiletf.getText());
+					        stmt.setInt(5, mob);
+				        }
+				        catch(Exception e)
+				        {
+				        	warninglabel.setText("Enter a telephone number");
+				        }
+				        
+				        stmt.setString(6, emailtf.getText());
+				        String doj;
+				        String s4 = (String) yearcb1.getSelectedItem();
+				       	String s5 = (String) monthcb1.getSelectedItem();
+				        
+				        String s6 = (String) datecb1.getSelectedItem();
+				       
+				        doj = s4+"-"+s5+"-"+s6;
+				        stmt.setString(7, doj);
+				        stmt.setInt(8, Integer.parseInt(aidtf.getText()));
+				        stmt.setInt(9, Integer.parseInt(worketf.getText()));
+				        if(insuranceval==1)
+				        {
+				        	stmt.setString(10, "Term Insurance");
+				        }
+				        if(insuranceval==2)
+				        {
+				        	stmt.setString(10, "Child Plan Insurance");
+				        }
+				        if(insuranceval==3)
+				        {
+				        	stmt.setString(10, "Whole Life Insurance");
+				        }
+				        stmt.executeUpdate();
+						
+					} catch (SQLException except1) {
+						
+						System.out.println(except1);
+						
+						
+					}
+					
+				}
+				
+				nametf.setText(null);
+				yearcb.setSelectedIndex(0);
+				monthcb.setSelectedIndex(0);
+				datecb.setSelectedIndex(0);
+				yearcb1.setSelectedIndex(0);
+				monthcb1.setSelectedIndex(0);
+				datecb1.setSelectedIndex(0);
+				addressta.setText(null);
+				mobiletf.setText(null);
+				emailtf.setText(null);
+				worketf.setText(null);
+				aidtf.setText(null);
+				cl2.show(panel_1, "name_11001346500172");
+				panel_1.revalidate();
+				addagentpanel.revalidate();
+				frame.revalidate();
+				
+			
+				
+			}
+		});
+		
+		
+		btnViewagent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent viewagentevent) {
+				
+				cl.show(grandfatherpanel, "name_19239332734906");
+				grandfatherpanel.revalidate();
+				frame.revalidate();
+				
+				
+			}
+		});
+		
+		
+		btnCheckInsurance.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent checkinevent) {
+				
+				
+				
+				String ans = caidtf.getText();
+				int id = Integer.parseInt(ans);
+				try {
+					
+					String insurancetype=null;
+					Connection conn3 = DriverManager.getConnection("jdbc:mysql://localhost:3306/mini_project?verifyServerCertificate=false&useSSL=true","root","");
+					PreparedStatement stmt = conn3.prepareStatement(" Select Insurance from agentinfo where agent_id=? ");
+					stmt.setInt(1, id);
+					ResultSet rs = stmt.executeQuery();
+					
+					while(rs.next())
+					{
+						 insurancetype = rs.getString(1);
+						
+					}
+					
+					
+					
+					
+					if(insurancetype.equals("Term Insurance"))
+					{
+						 cl4.show(parentpanelc, "name_73735057972235");
+						 Connection conn4 = DriverManager.getConnection("jdbc:mysql://localhost:3306/mini_project?verifyServerCertificate=false&useSSL=true","root","");
+						 PreparedStatement stmt2 = conn4.prepareStatement(" Select * from terminsurance");
+						 ResultSet rs1 = stmt2.executeQuery();
+						 tinsurancetable.setModel(DbUtils.resultSetToTableModel(rs1));
+						 tinsurancetable.setRowHeight(225);
+						 tinsurancepanel.revalidate();
+						 
+						 
+						 
+					}
+					if(insurancetype.equals("Child Plan Insurance"))
+					{
+						 cl4.show(parentpanelc, "name_73791843709339");
+						 Connection conn4 = DriverManager.getConnection("jdbc:mysql://localhost:3306/mini_project?verifyServerCertificate=false&useSSL=true","root","");
+						 PreparedStatement stmt2 = conn4.prepareStatement(" Select * from childinsurance");
+						 ResultSet rs1 = stmt2.executeQuery();
+						 cinsurancetable.setRowHeight(225);
+						 cinsurancetable.setModel(DbUtils.resultSetToTableModel(rs1));
+						 cinsurancepanel.revalidate();
+						
+					}
+					if(insurancetype.equals("Whole Life Insurance"))
+					{
+						 cl4.show(parentpanelc, "name_73812949494419");
+						 Connection conn4 = DriverManager.getConnection("jdbc:mysql://localhost:3306/mini_project?verifyServerCertificate=false&useSSL=true","root","");
+						 PreparedStatement stmt2 = conn4.prepareStatement(" Select * from lifeinsurance");
+						 ResultSet rs1 = stmt2.executeQuery();
+						 winsurancetable.setRowHeight(225);
+						 winsurancetable.setModel(DbUtils.resultSetToTableModel(rs1));
+						 winsurancepanel.revalidate();
+						
+					}
+					
+					
+				}
+				
+				
+				catch(Exception checkexception)
+				{
+					System.out.println(checkexception);
+				}
+				
+				
+				
+			}
+		});
+		
+		
+		
+		btnSubmitDetails.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent submitaction) {
+				
+				if(cgenderval==1)
+				{
+					
+					try {
+						
+						Connection conn5=DriverManager.getConnection("jdbc:mysql://localhost:3306/mini_project?verifyServerCertificate=false&useSSL=true","root","");
+						
+						PreparedStatement stmt1 = conn5.prepareStatement(" Select Insurance from agentinfo where agent_id=? ");
+						ResultSet rs = stmt1.executeQuery();
+						String insurance="";
+						while(rs.next())
+						{
+							insurance = rs.getString(1);
+							
+						}
+						
+						String updatequery = "insert into customerinfo values (?,?,?,?,?,?,?,?,?,?)";
+						PreparedStatement stmt = conn5.prepareStatement(updatequery);
+						
+						stmt.setString(1, cnametf.getText());
+						stmt.setString(2, "Male");
+						
+						String dob;
+						String s1 = (String) cyearcb.getSelectedItem();
+				        
+				        String s2 = (String) cmonthcb.getSelectedItem();
+				        
+				        String s3 = (String) cdatecb.getSelectedItem();
+				        
+				        dob = s1+"-"+s2+"-"+s3;
+				        stmt.setString(3, dob);
+				        
+				   
+				        String address = caddressta.getText();
+				        stmt.setString(4, address);
+				        
+				        int mob = Integer.parseInt(cmobtf.getText());
+					    stmt.setInt(5, mob);
+				        
+				        
+				        stmt.setString(6, cemailtf.getText());
+				        stmt.setInt(8, Integer.parseInt(aidtf.getText()));
+				        stmt.setInt(9, Integer.parseInt(worketf.getText()));
+				        stmt.setString(10, insurance);
+				       
+				        stmt.executeUpdate();
+						
+						
+					}
+					
+					catch(Exception c)
+					{
+					
+						
+						System.out.println(c);
+						
+						
+					}
+					
+				
+					
+					
+					
+					
+				}
+				
+				if(cgenderval==2)
+				{
+					
+					
+					
+					
+					
+					
+					
+					
+					
+				}
+				
+				cnametf.setText(null);
+				cyearcb.setSelectedIndex(0);
+				cmonthcb.setSelectedIndex(0);
+				cdatecb.setSelectedIndex(0);
+				caddressta.setText(null);
+				cmobtf.setText(null);
+				cemailtf.setText(null);
+				caidtf.setText(null);
+				addcustomerpanel.revalidate();
+				frame.revalidate();
+				
+				
+				
+				
+				
+				
+			}
+		});
+		
+		
+		frame.getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{panel, lblNewLabel}));
+		frame.revalidate();
+		
+		
+		
+		
+	}
+	
+	// important method ends here
+	// Auxiliary methods start here
+	public void insurance1()
+	{
+		insuranceval=1;
+	}
+	public void insurance2()
+	{
+		insuranceval=2;
+	}
+	public void insurance3()
+	{
+		insuranceval=3;
+	}
+	public void malerdbtn()
+	{
+		genderval = 1;
+	}
+	public void malerdbtn1()
+	{
+		cgenderval = 1;
+	}
+	public void femalerdbtn()
+	{
+		genderval = 2;
+	}
+	public void femalerdbtn1()
+	{
+		cgenderval = 2;
+	}
+}
